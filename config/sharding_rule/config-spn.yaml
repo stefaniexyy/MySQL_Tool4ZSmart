@@ -1,0 +1,179 @@
+schemaName: spn
+dataSources:
+  ds0:
+    url: jdbc:mysql://10.159.0.111:3307/spn_0001?serverTimezone=UTC&useSSL=false
+    username: spn
+    password: 1jian8Shu)
+    connectionTimeoutMilliseconds: 30000
+    idleTimeoutMilliseconds: 60000
+    maxLifetimeMilliseconds: 1800000
+    maxPoolSize: 50
+  ds1:
+    url: jdbc:mysql://10.159.0.112:3308/spn_0002?serverTimezone=UTC&useSSL=false
+    username: spn
+    password: 1jian8Shu)
+    connectionTimeoutMilliseconds: 30000
+    idleTimeoutMilliseconds: 60000
+    maxLifetimeMilliseconds: 1800000
+    maxPoolSize: 50
+
+
+shardingRule:
+  broadcastTables:
+  - SA_ATTR
+  - SA_ATTR
+  - SA_AUTO_WS
+  - SA_AUTO_WS
+  - SA_BC
+  - SA_BC
+  - SA_CONFIG
+  - SA_CONFIG
+  - SA_CONFIG_DEFAULT_PARAMS
+  - SA_CONFIG_DEFAULT_PARAMS
+  - SA_CONFIG_ITEMS
+  - SA_CONFIG_ITEMS
+  - SA_CONFIG_MODULES
+  - SA_CONFIG_MODULES
+  - SA_CONFIG_SECTIONS
+  - SA_CONFIG_SECTIONS
+  - SA_CONFIG_TYPE
+  - SA_CONFIG_TYPE
+  - SA_CONNECT_TYPE
+  - SA_CONNECT_TYPE
+  - SA_DN_SEGMENT
+  - SA_DN_SEGMENT
+  - SA_DOMAIN
+  - SA_DOMAIN
+  - SA_EVENT_LINK
+  - SA_EVENT_LINK
+  - SA_EVENT_PARAM
+  - SA_EVENT_PARAM
+  - SA_EVENT_TYPE
+  - SA_EVENT_TYPE
+  - SA_EVENT_TYPE_MAPPING
+  - SA_EVENT_TYPE_MAPPING
+  - SA_INNER_ORDER_STATE
+  - SA_INNER_ORDER_STATE
+  - SA_INST_PARAMS
+  - SA_INST_PARAMS
+  - SA_INSTANCES
+  - SA_INSTANCES
+  - SA_MANUAL_WS
+  - SA_MANUAL_WS
+  - SA_NE
+  - SA_NE
+  - SA_NE_TYPE
+  - SA_NE_TYPE
+  - SA_NODE_TYPE
+  - SA_NODE_TYPE
+  - SA_OPER_MAPPING
+  - SA_OPER_MAPPING
+  - SA_OPERATION
+  - SA_OPERATION
+  - SA_ORDER_STATE
+  - SA_ORDER_STATE
+  - SA_PARAM
+  - SA_PARAM
+  - SA_PARAM_CODE
+  - SA_PARAM_CODE
+  - SA_PARAM_REGION
+  - SA_PARAM_REGION
+  - SA_SERV_NE_EVENT
+  - SA_SERV_NE_EVENT
+  - SA_SERV_TYPE_NE_TYPE
+  - SA_SERV_TYPE_NE_TYPE
+  - SA_SERVICE
+  - SA_SERVICE
+  - SA_SERVICE_MAPPING
+  - SA_SERVICE_MAPPING
+  - SA_SUBS_EVENT
+  - SA_SUBS_EVENT
+  - SA_WF_NODE
+  - SA_WF_NODE
+  - SA_WF_NODE_ATTR
+  - SA_WF_NODE_ATTR
+  - SA_WF_NODE_CONNECT
+  - SA_WF_NODE_CONNECT
+  - SA_WF_TEMPLET
+  - SA_WF_TEMPLET
+  - SA_WF_TEMPLET_APPLY
+  - SA_WF_TEMPLET_APPLY
+  - SA_WS
+  - SA_WS
+  - SA_WS_ADVICE
+  - SA_WS_ADVICE
+  - SA_WS_AREA
+  - SA_WS_AREA
+  - SA_WS_EVENT_TYPE
+  - SA_WS_EVENT_TYPE
+  - SA_WS_HLR
+  - SA_WS_HLR
+  - SA_WS_ORG
+  - SA_WS_ORG
+  - SA_WS_STAFF
+  - SA_WS_STAFF
+  - SA_WS_TYPE
+  - SA_WS_TYPE
+  defaultDataSourceName: ds0
+  tables:
+    SA_INNER_ORDER:
+      actualDataNodes: ds${0..1}.SA_INNER_ORDER${0..11}
+      databaseStrategy:
+        inline:
+          algorithmExpression: ds${ORDER_ID % 2}
+          shardingColumn: ORDER_ID
+      tableStrategy:
+        inline:
+          algorithmExpression: SA_INNER_ORDER${PART_ID % 12}
+          shardingColumn: PART_ID
+    SA_INNER_ORDER_DETAIL:
+      actualDataNodes: ds${0..1}.SA_INNER_ORDER_DETAIL${0..11}
+      databaseStrategy:
+        inline:
+          algorithmExpression: ds${ORDER_ID % 2}
+          shardingColumn: ORDER_ID
+      tableStrategy:
+        inline:
+          algorithmExpression: SA_INNER_ORDER_DETAIL${PART_ID % 12}
+          shardingColumn: PART_ID
+    SA_NODE_INST:
+      actualDataNodes: ds${0..1}.SA_NODE_INST${0..11}
+      databaseStrategy:
+        inline:
+          algorithmExpression: ds${ORDER_ID % 2}
+          shardingColumn: ORDER_ID
+      tableStrategy:
+        inline:
+          algorithmExpression: SA_NODE_INST${PART_ID % 12}
+          shardingColumn: PART_ID
+    SA_ORDER:
+      actualDataNodes: ds${0..1}.SA_ORDER${0..11}
+      databaseStrategy:
+        inline:
+          algorithmExpression: ds${ORDER_ID % 2}
+          shardingColumn: ORDER_ID
+      tableStrategy:
+        inline:
+          algorithmExpression: SA_ORDER${PART_ID % 12}
+          shardingColumn: PART_ID
+    SA_WO_COMMAND_INST:
+      actualDataNodes: ds${0..1}.SA_WO_COMMAND_INST${0..11}
+      databaseStrategy:
+        inline:
+          algorithmExpression: ds${ORDER_ID % 2}
+          shardingColumn: ORDER_ID
+      tableStrategy:
+        inline:
+          algorithmExpression: SA_WO_COMMAND_INST${PART_ID % 12}
+          shardingColumn: PART_ID
+    SA_WO_HIS:
+      actualDataNodes: ds${0..1}.SA_WO_HIS${0..11}
+      databaseStrategy:
+        inline:
+          algorithmExpression: ds${ORDER_ID % 2}
+          shardingColumn: ORDER_ID
+      tableStrategy:
+        inline:
+          algorithmExpression: SA_WO_HIS${PART_ID % 12}
+          shardingColumn: PART_ID
+

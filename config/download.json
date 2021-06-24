@@ -1,0 +1,11 @@
+{
+    "CRMHOT":[
+        ["|",[],"order_item"," "],
+        ["|",[],"cust_order"," "],
+        ["|",[],"cust_contact"," "]
+
+    ],
+    "CC":[
+        ["|",["SUBS_ID","ACC_NBR"],"SUBS"," where ACC_NBR=1"]  
+    ]
+}

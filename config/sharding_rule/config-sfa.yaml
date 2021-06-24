@@ -1,0 +1,14 @@
+schemaName: sfa
+dataSources:
+  ds0:
+    url: jdbc:mysql://10.159.0.105:3307/sfa_0001?serverTimezone=UTC&useSSL=false
+    username: sfa
+    password: 1jian8Shu)
+    connectionTimeoutMilliseconds: 30000
+    idleTimeoutMilliseconds: 60000
+    maxLifetimeMilliseconds: 1800000
+    maxPoolSize: 50
+
+shardingRule:
+  bindingTables:
+    - DUAL

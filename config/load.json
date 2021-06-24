@@ -1,0 +1,8 @@
+{
+    "CRMHOT":[
+        ["normal","CRMHOT1","|","cust_contact","/soft/rec/xyy/data/FIX_cust_contact2.unl"]
+    ],
+    "CC":[
+        ["sharding","|",4,27,32,28,"SPC_BAL_SHARE","/soft/rec/xyy/data/FIX_SPC_BAL_SHARE.unl"]
+    ]
+}

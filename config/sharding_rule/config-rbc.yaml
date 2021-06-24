@@ -1,0 +1,62 @@
+schemaName: rbc
+dataSources:
+  ds0:
+    url: jdbc:mysql://10.159.0.109:3307/rbc_0001
+    username: rbc
+    password: 1jian8Shu)
+  ds1:
+    url: jdbc:mysql://10.159.0.110:3308/rbc_0002
+    username: rbc
+    password: 1jian8Shu)
+  ds2:
+    url: jdbc:mysql://10.159.0.111:3307/rbc_0003
+    username: rbc
+    password: 1jian8Shu)
+  ds3:
+    url: jdbc:mysql://10.159.0.112:3308/rbc_0004
+    username: rbc
+    password: 1jian8Shu)
+
+shardingRule:
+  defaultDataSourceName: ds0
+  tables:
+    EVENT_RECURRING_*:
+      actualDataNodes: ${com.iwhalecloud.zdaas.jdbc.algorithm.rb.RbDataNodeGenerator.generate('EVENT_RECURRING_*')}
+      databaseStrategy:
+        complex:
+          algorithmClassName: com.iwhalecloud.zdaas.jdbc.algorithm.rb.RbDbShardingAlgorithm
+          shardingColumns: CUST_ID,PAYMENT_TYPE
+      tableStrategy:
+        complex:
+          algorithmClassName: com.iwhalecloud.zdaas.jdbc.algorithm.rb.RbTableShardingAlgorithm
+          shardingColumns: CUST_ID,PAYMENT_TYPE
+    EVENT_USAGE_*:
+      actualDataNodes: ${com.iwhalecloud.zdaas.jdbc.algorithm.rb.RbDataNodeGenerator.generate('EVENT_USAGE_*')}
+      databaseStrategy:
+        complex:
+          algorithmClassName: com.iwhalecloud.zdaas.jdbc.algorithm.rb.RbDbShardingAlgorithm
+          shardingColumns: CUST_ID,PAYMENT_TYPE
+      tableStrategy:
+        complex:
+          algorithmClassName: com.iwhalecloud.zdaas.jdbc.algorithm.rb.RbTableShardingAlgorithm
+          shardingColumns: CUST_ID,PAYMENT_TYPE
+    EVENT_USAGE_C_*:
+      actualDataNodes: ${com.iwhalecloud.zdaas.jdbc.algorithm.rb.RbDataNodeGenerator.generate('EVENT_USAGE_C_*')}
+      databaseStrategy:
+        complex:
+          algorithmClassName: com.iwhalecloud.zdaas.jdbc.algorithm.rb.RbDbShardingAlgorithm
+          shardingColumns: CUST_ID,PAYMENT_TYPE
+      tableStrategy:
+        complex:
+          algorithmClassName: com.iwhalecloud.zdaas.jdbc.algorithm.rb.RbTableShardingAlgorithm
+          shardingColumns: CUST_ID,PAYMENT_TYPE
+    OTC_EVENT_CHARGE_*:
+      actualDataNodes: ${com.iwhalecloud.zdaas.jdbc.algorithm.rb.RbDataNodeGenerator.generate('OTC_EVENT_CHARGE_*')}
+      databaseStrategy:
+        complex:
+          algorithmClassName: com.iwhalecloud.zdaas.jdbc.algorithm.rb.RbDbShardingAlgorithm
+          shardingColumns: CUST_ID,PAYMENT_TYPE
+      tableStrategy:
+        complex:
+          algorithmClassName: com.iwhalecloud.zdaas.jdbc.algorithm.rb.RbTableShardingAlgorithm
+          shardingColumns: CUST_ID,PAYMENT_TYPE

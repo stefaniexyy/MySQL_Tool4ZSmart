@@ -1,0 +1,9 @@
+{
+    "SPC":[
+        ["normal","SPC1","|","BILL_PROD_INST","/soft/rec/xyy/data/spc/BILL_PROD_INST.unl"],
+        ["normal","SPC1",";","bill_prod_inst_attr","/soft/rec/xyy/data/spc/bill_prod_inst_attr.csv"],
+        ["normal","SPC1","|","BILL_PROD_INST_FUNC","/soft/rec/xyy/data/spc/BILL_PROD_INST_FUNC.unl"],
+        ["normal","SPC1","|","BILL_OFFER_INST","/soft/rec/xyy/data/spc/BILL_OFFER_INST.unl"],
+        ["normal","SPC1",";","BILL_OFFER_INST_ATTR","/soft/rec/xyy/data/spc/BILL_OFFER_INST_ATTR.csv"]
+    ]
+}
