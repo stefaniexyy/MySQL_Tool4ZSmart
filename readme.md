@@ -1,7 +1,7 @@
 免责申明
 =================
 任何使用本工具包造成的现网数据问题和数据库问题概不负责  
-本工具包使用python3 perl hash编写，建议由一定python基础的人执行  
+本工具包使用python3 perl shell编写，建议由一定python基础的人执行  
 需求环境安装zlib 
 需求环境安装python3.9及以下类库  
 1) cx_Oracle
@@ -12,6 +12,8 @@
 需求环境安装perl 5.010及其以上版本
 
 推荐使用VS CODE编辑json配置文件
+
+Copyright 2021 WhaleCloud Migration & Reconciliation Expert Team
 
 使用说明
 =================
@@ -236,11 +238,11 @@ __警告!!__
 3) 导入后需要检查是否能在代理上查到数据
 
 
-exc_mysql.py
+exec_mysql.py
 =================
 批量执行sql语句  
 __执行命令__  
-__py3 exc_mysql.py CC ../data/FIX_SCP_SQL.unl__ 
+__py3 exec_mysql.py CC ../data/FIX_SCP_SQL.unl__ 
 * 参数一 执行SQL的逻辑库名
 * 参数二 SQL文件路径
   
@@ -249,6 +251,16 @@ sql语句|对应物理库名字|
 例如
 delete from bal_share_detail where BAL_SHARE_DETAIL_ID=58396|CC1|
 sql语句不需要";"结尾  
+举例  
+```sql
+select 'UPDATE BILL_BAL_SHARE set EXP_DATE=null where BAL_SHARE_ID=' ||
+       b.bal_share_id || ' and SEQ=' || b.seq SQL_TEXT,
+       'SPC1' DB
+  from SRC_BAL_SHARE_DETAIL a, FIX_BILL_BAL_SHARE_0 b
+ where a.bal_share_id = b.bal_share_id
+   and (b.update_date is not null or b.exp_date is not null)
+   and a.exp_date is null 
+```
 表名需要是真实的物理表名  
 download_mysql.py之所以回导出物理库名字和物理表名，就是在这边使用的  
 
@@ -316,7 +328,7 @@ create table SRC_ACCT
 * 使用load_mysql脚本导入mysql
   
 ## 批量修改数据
-原理同上，只是需要生成批量执行的SQL文件在把sql文件下载下来就行了
+原理同上，只是需要生成批量执行的SQL文件然后在把sql文件下载下来就行了
 
 
 
