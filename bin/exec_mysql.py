@@ -5,6 +5,7 @@ import time
 from multiprocessing import Process,Pipe
 import pymysql
 import re
+import sys
 
 with open ('../config/conn.json') as db_conn_file:
     conn_info=json.load(db_conn_file)
